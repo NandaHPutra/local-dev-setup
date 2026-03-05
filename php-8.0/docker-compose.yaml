@@ -1,0 +1,25 @@
+services:
+  php80:
+    image: php:8.0-fpm
+    container_name: php80
+    restart: unless-stopped
+    user: "1000:1000"
+
+    ports:
+      - "9080:9000"
+
+    volumes:
+      - ${PROJECTS_PATH}:/var/www
+      - ./php.ini:/usr/local/etc/php/conf.d/custom.ini
+
+    environment:
+      - PHP_IDE_CONFIG=serverName=Docker
+
+    working_dir: /var/www
+
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+    driver: bridge

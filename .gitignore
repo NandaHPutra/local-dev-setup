@@ -1,0 +1,16 @@
+# Environment files with sensitive data
+**/.env
+
+# Data directories
+**/data/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

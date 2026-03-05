@@ -1,0 +1,37 @@
+# Example configuration using PHP 7.4
+server {
+    listen 80;
+    server_name legacy-project.local;
+    root /var/www/core2/legacy-project/public;
+
+    index index.php index.html;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass php74:9000;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+
+# Example configuration using PHP 8.4
+server {
+    listen 80;
+    server_name modern-project.local;
+    root /var/www/core3/modern-project/public;
+
+    index index.php index.html;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass php84:9000;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}

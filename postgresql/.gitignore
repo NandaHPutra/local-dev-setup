@@ -1,0 +1,5 @@
+# Environment file
+.env
+
+# PostgreSQL data directory
+data/
