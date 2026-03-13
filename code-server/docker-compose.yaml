@@ -1,0 +1,26 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    restart: unless-stopped
+
+    ports:
+      - "8443:8443"
+
+    environment:
+      PUID: ${PUID:-1000}
+      PGID: ${PGID:-1000}
+      TZ: ${TZ:-UTC}
+      PASSWORD: ${PASSWORD:-change-me}
+
+    volumes:
+      - ./data:/config
+      - ${PROJECTS_PATH:-/mnt/data/code}:/workspace
+
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+    driver: bridge
+    external: true

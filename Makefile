@@ -1,4 +1,4 @@
-.PHONY: help up-all down-all restart-all status network
+.PHONY: help up-all down-all restart-all status network up-code-server down-code-server logs-code-server
 
 # Default target
 help:
@@ -24,6 +24,7 @@ help:
 	@echo ""
 	@echo "Other services:"
 	@echo "  make up-mailhog     - Start Mailhog"
+	@echo "  make up-code-server - Start code-server (VS Code in browser)"
 
 # Create shared network
 network:
@@ -67,6 +68,11 @@ up-mailhog:
 	@cd mailhog && docker compose up -d
 	@echo "✓ Mailhog started - SMTP: 1025, Web UI: http://localhost:8025"
 
+up-code-server: network
+	@test -f code-server/.env || (cp code-server/.env.example code-server/.env && echo "✓ Created code-server/.env from .env.example (edit PASSWORD/PROJECTS_PATH)")
+	@cd code-server && docker compose up -d
+	@echo "✓ code-server started - http://localhost:8443"
+
 down-mysql:
 	@cd mysql && docker compose down
 
@@ -78,6 +84,9 @@ down-postgres:
 
 down-mailhog:
 	@cd mailhog && docker compose down
+
+down-code-server:
+	@cd code-server && docker compose down
 
 # PHP services
 up-php74:
@@ -132,6 +141,9 @@ logs-postgres:
 
 logs-mailhog:
 	@cd mailhog && docker compose logs -f
+
+logs-code-server:
+	@cd code-server && docker compose logs -f
 
 logs-php74:
 	@cd php-7.4 && docker compose logs -f
