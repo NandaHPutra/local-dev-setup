@@ -5,7 +5,7 @@
 server {
     listen 80;
     server_name example-laravel.local;
-    root /var/www/core2/example-project/public;
+    root /var/www/example-project/public;
 
     add_header X-Frame-Options "SAMEORIGIN";
     add_header X-Content-Type-Options "nosniff";

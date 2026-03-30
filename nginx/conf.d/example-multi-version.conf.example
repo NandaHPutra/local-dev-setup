@@ -2,7 +2,7 @@
 server {
     listen 80;
     server_name legacy-project.local;
-    root /var/www/core2/legacy-project/public;
+    root /var/www/legacy-project/public;
 
     index index.php index.html;
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Helper script to create a new Nginx site configuration
-# Usage: ./create-site.sh myproject.local /var/www/core2/myproject/public php82
+# Usage: ./create-site.sh myproject.local /var/www/myproject/public php82
 
 set -e
 
@@ -9,7 +9,7 @@ if [ "$#" -lt 2 ]; then
     echo "Usage: $0 <domain> <root_path> [php_version]"
     echo ""
     echo "Examples:"
-    echo "  $0 myproject.local /var/www/core2/myproject/public php82"
+    echo "  $0 myproject.local /var/www/myproject/public php82"
     echo "  $0 legacy.local /var/www/personal/legacy php74"
     echo ""
     echo "Available PHP versions: php74, php80, php82, php84"
